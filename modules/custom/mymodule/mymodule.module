@@ -1,0 +1,46 @@
+<?php
+use Drupal\user\Entity\User;
+
+/**
+* Implementation module
+*/
+
+function mymodule_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+	if($form_id == 'node_doctors_form')
+	{
+		$form['actions']['submit']['#value'] = t('Add Doctor');
+	}
+	
+	if($form_id == 'node_online_appointment_form')
+	{
+		$user = User::load(\Drupal::currentUser()->id()); //current user id
+		$id = $_GET['id'];   //id from url
+		$form['title']['widget'][0]['value']['#default_value'] = $user->getUsername(); //getting current user name through $user varialbe
+		$form['title']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';  //readonly
+		$form['field_doctor_id']['widget'][0]['value']['#default_value'] = $id;
+		// $form['field_rd']['widget'][0]['value']['#default_value'] = $id;
+		// $form['field_doctor']['widget'][0]['target_id']['#default_value'] = \Drupal\node\Entity\Node::load($id);
+		$form['field_user_doctor']['widget'][0]['target_id']['#default_value'] = \Drupal\user\Entity\User::load($id);     //getting doc name throhg user id 
+		$form['field_user_doctor']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+		$form['actions']['submit']['#value'] = t('Take Appoitment');  //changing form buttoin name
+	}
+	if($form_id == 'node_reviews_form')
+	{
+		$user = User::load(\Drupal::currentUser()->id());
+		$form['title']['widget'][0]['value']['#default_value'] = $user->getUsername();
+		$form['title']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+	}
+
+	if($form_id == 'cal')
+	{
+		$form['#prefix'] = '<div class="cal_form_container">';
+  		$form['#suffix'] = '</div>';
+	}
+}
+
+
+// function mymodule_node_online_appointment_form_submit($form, FormStateInterface $form_state) {
+
+//   $form_state->setRedirect('aboutus');
+// }

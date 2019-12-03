@@ -1,0 +1,39 @@
+mymodule.cal:
+  path: '/calculate/bmi'
+  defaults:
+    _form: '\Drupal\mymodule\Form\Cal'
+    _title: 'My First Menu'
+  requirements:
+    _permission: 'access content'
+
+mymodule.bmr:
+  path: '/calculate/bmr'
+  defaults:
+    _form: '\Drupal\mymodule\Form\Bmr'
+    _title: 'Calculate BMR'
+  requirements:
+    _permission: 'access content'
+
+mymodule.emi:
+  path: '/calculate/emi'
+  defaults:
+    _form: '\Drupal\mymodule\Form\Emi'
+    _title: 'Calculate EMI'
+  requirements:
+    _permission: 'access content'
+
+mymodule.body:
+  path: '/calculate/body'
+  defaults:
+    _form: '\Drupal\mymodule\Form\Body'
+    _title: 'Calculate Body Type'
+  requirements:
+    _permission: 'access content'
+
+mymodule.content:
+  path: '/healthcare'
+  defaults:
+    _controller: '\Drupal\mymodule\Controller\ExampleController::content'
+    _title: 'My First Menu'
+  requirements:
+    _permission: 'access content'

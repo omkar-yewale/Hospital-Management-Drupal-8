@@ -1,0 +1,14 @@
+name: 'Gender test'
+type: module
+description: 'Support module for the Gender field module tests.'
+# core: 8.x
+package: Testing
+dependencies:
+  - drupal:node
+  - drupal:gender
+
+# Information added by Drupal.org packaging script on 2018-08-11
+version: '8.x-1.0-alpha3'
+core: '8.x'
+project: 'gender'
+datestamp: 1534017190
